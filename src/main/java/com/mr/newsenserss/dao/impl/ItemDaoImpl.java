@@ -1,28 +1,19 @@
 package com.mr.newsenserss.dao.impl;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
-import javax.persistence.Query;
-
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mr.newsenserss.Item;
-import com.mr.newsenserss.RssReader;
 import com.mr.newsenserss.dao.ItemDao;
 
 @Repository("itemDao")
 @Transactional
 public class ItemDaoImpl implements ItemDao {
 
-    private static final Logger log = LoggerFactory.getLogger(RssReader.class);
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -31,6 +22,7 @@ public class ItemDaoImpl implements ItemDao {
 	sessionFactory.getCurrentSession().save(item);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Item getLastAdedByHostUrl(String host) {
 	String param = "%" + host + "%";

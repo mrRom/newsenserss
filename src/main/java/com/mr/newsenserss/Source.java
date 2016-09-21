@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity(name="links")
-public class Link {
+@Entity(name="sources")
+public class Source {
     @Id
     @GeneratedValue
     private Long id;
@@ -41,7 +41,7 @@ public class Link {
 
     @Override
     public String toString() {
-	return "Link [id=" + id + ", url=" + url + ", host=" + host + "]";
+	return "Source [id=" + id + ", url=" + url + ", host=" + host + "]";
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Link {
 	    return false;
 	if (getClass() != obj.getClass())
 	    return false;
-	Link other = (Link) obj;
+	Source other = (Source) obj;
 	if (host == null) {
 	    if (other.host != null)
 		return false;

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 
 import com.mr.newsenserss.dao.ItemDao;
-import com.mr.newsenserss.dao.LinkDao;
+import com.mr.newsenserss.dao.SourceDao;
 
 @SpringBootApplication
 public class App {
@@ -27,12 +27,12 @@ public class App {
     }
     
     @Bean
-    public CommandLineRunner demo(ItemDao itemDao, LinkDao linkDao) {
+    public CommandLineRunner demo(ItemDao itemDao, SourceDao linkDao) {
 	return (args) -> {
 	    RssReader rr = new RssReader();
 	    while (true) {
-		List<Link> links = (List<Link>) linkDao.findAll();
-		for (Link link : links) {
+		List<Source> links = (List<Source>) linkDao.findAll();
+		for (Source link : links) {
 		    Item checkItem = itemDao.getLastAdedByHostUrl(link.getHost());
 		    List<Item> items = rr.read(link.getUrl());
 		    for (Item item : items) {
